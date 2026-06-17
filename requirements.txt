@@ -1,0 +1,40 @@
+# ── Document parsing (Stage 1) ────────────────────────────────────────────────
+docling>=2.0.0              # PDF / DOCX / PPTX / HTML → text + figures
+                            # docling-core is installed automatically as a dependency
+Pillow>=10.0.0              # encode extracted figure images as PNG bytes
+
+# ── GPU acceleration for Docling (optional but strongly recommended) ──────────
+# Docling uses PyTorch internally for layout detection and OCR models.
+# Without a CUDA-enabled torch, it falls back to CPU automatically.
+#
+# Install PyTorch with CUDA 12.1 (most common):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+#
+# Install PyTorch with CUDA 11.8:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+#
+# CPU-only (no GPU, slower):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+#
+# Check your CUDA version first:  nvidia-smi
+# Then pick the matching index URL from: https://pytorch.org/get-started/locally/
+
+# ── Vision LLM (Stage 2) ─────────────────────────────────────────────────────
+ollama>=0.2.0               # llava, minicpm-v, llama3.2-vision, moondream, …
+                            # Pull a model first:  ollama pull llava
+
+# ── Text LLM (Stage 4 — extraction) ──────────────────────────────────────────
+# ollama covers this too (provider="ollama" in LLMConfig)
+openai>=1.35.0              # optional: GPT-4o, or LM Studio OpenAI-compat
+
+# ── Config / validation ───────────────────────────────────────────────────────
+pydantic>=2.7.0
+
+# ── FastAPI HTTP wrapper (optional — only needed for examples/fastapi_app.py) ─
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9     # multipart file uploads
+
+# ── Tests ─────────────────────────────────────────────────────────────────────
+pytest>=8.2.0
+pytest-asyncio>=0.23.0
