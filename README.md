@@ -92,22 +92,22 @@ doc_pipeline/
 
 ## Requirements
 
-| Requirement | Version | Purpose |
-|---|---|---|
-| Python | ≥ 3.11 | `match` statements, union type hints |
-| [Ollama app](https://ollama.com/download) | latest | Runs VLM + text LLM locally, free |
-| `docling` | ≥ 2.0.0 | Document parsing + GPU figure extraction |
-| `Pillow` | ≥ 10.0.0 | Encode extracted figures as PNG bytes |
-| `ollama` (Python) | ≥ 0.2.0 | Ollama API client |
-| `pydantic` | ≥ 2.7.0 | Config + schema validation |
-| PyTorch + CUDA | see below | GPU acceleration for Docling (optional) |
+| Requirement                               | Version   | Purpose                                  |
+| ----------------------------------------- | --------- | ---------------------------------------- |
+| Python                                    | ≥ 3.11    | `match` statements, union type hints     |
+| [Ollama app](https://ollama.com/download) | latest    | Runs VLM + text LLM locally, free        |
+| `docling`                                 | ≥ 2.0.0   | Document parsing + GPU figure extraction |
+| `Pillow`                                  | ≥ 10.0.0  | Encode extracted figures as PNG bytes    |
+| `ollama` (Python)                         | ≥ 0.2.0   | Ollama API client                        |
+| `pydantic`                                | ≥ 2.7.0   | Config + schema validation               |
+| PyTorch + CUDA                            | see below | GPU acceleration for Docling (optional)  |
 
 Optional — needed only for specific features:
 
-| Package | When needed |
-|---|---|
-| `fastapi`, `uvicorn`, `python-multipart` | FastAPI HTTP wrapper |
-| `openai` | OpenAI GPT-4o or LM Studio as text LLM |
+| Package                                  | When needed                            |
+| ---------------------------------------- | -------------------------------------- |
+| `fastapi`, `uvicorn`, `python-multipart` | FastAPI HTTP wrapper                   |
+| `openai`                                 | OpenAI GPT-4o or LM Studio as text LLM |
 
 ---
 
@@ -316,20 +316,36 @@ asyncio.run(run())
   "experience_years": 8,
   "seniority_level": "senior",
   "skills": [
-    {"name": "Python",     "level": "expert"},
-    {"name": "FastAPI",    "level": "advanced"},
-    {"name": "PostgreSQL", "level": "advanced"},
-    {"name": "Docker",     "level": "advanced"},
-    {"name": "AWS",        "level": "intermediate"}
+    { "name": "Python", "level": "expert" },
+    { "name": "FastAPI", "level": "advanced" },
+    { "name": "PostgreSQL", "level": "advanced" },
+    { "name": "Docker", "level": "advanced" },
+    { "name": "AWS", "level": "intermediate" }
   ],
   "experiences": [
-    {"title": "Lead Backend Engineer", "company": "Acme Corp",   "duration_years": 3,
-     "highlight": "Reduced p99 latency from 400 ms to 38 ms via query optimisation."},
-    {"title": "Python Developer",      "company": "StartupXYZ",  "duration_years": 2,
-     "highlight": "Designed REST APIs serving 200k daily users."}
+    {
+      "title": "Lead Backend Engineer",
+      "company": "Acme Corp",
+      "duration_years": 3,
+      "highlight": "Reduced p99 latency from 400 ms to 38 ms via query optimisation."
+    },
+    {
+      "title": "Python Developer",
+      "company": "StartupXYZ",
+      "duration_years": 2,
+      "highlight": "Designed REST APIs serving 200k daily users."
+    }
   ],
-  "educations": [{"degree": "BSc Computer Science", "institution": "University of Tunis el Manar", "year": 2016}],
-  "certifications": [{"name": "AWS Solutions Architect Associate", "year": 2022}],
+  "educations": [
+    {
+      "degree": "BSc Computer Science",
+      "institution": "University of Tunis el Manar",
+      "year": 2016
+    }
+  ],
+  "certifications": [
+    { "name": "AWS Solutions Architect Associate", "year": 2022 }
+  ],
   "figure_insights": "No visual figures detected in this document."
 }
 ```
@@ -431,25 +447,42 @@ asyncio.run(run())
 
 ```json
 {
-  "invoices": [{
-    "invoice_number": "INV-2026-0089",
-    "vendor_name": "TechSupply SARL",
-    "invoice_date": "2026-06-01",
-    "due_date": "2026-06-30",
-    "currency": "TND",
-    "subtotal": 6900.0,
-    "vat_amount": 1311.0,
-    "total_amount": 8211.0,
-    "line_items": [
-      {"description": "Annual Software License",      "quantity": 1, "unit_price": 4800.0, "total": 4800.0},
-      {"description": "Priority Support Package",     "quantity": 1, "unit_price": 1200.0, "total": 1200.0},
-      {"description": "Onboarding Training (2 days)", "quantity": 2, "unit_price":  450.0, "total":  900.0}
-    ],
-    "payment_terms": "Net 30",
-    "bank_iban": "TN59 1234 5678 9012 3456 7890",
-    "status": "pending",
-    "_source": "INV-2026-0089.txt"
-  }],
+  "invoices": [
+    {
+      "invoice_number": "INV-2026-0089",
+      "vendor_name": "TechSupply SARL",
+      "invoice_date": "2026-06-01",
+      "due_date": "2026-06-30",
+      "currency": "TND",
+      "subtotal": 6900.0,
+      "vat_amount": 1311.0,
+      "total_amount": 8211.0,
+      "line_items": [
+        {
+          "description": "Annual Software License",
+          "quantity": 1,
+          "unit_price": 4800.0,
+          "total": 4800.0
+        },
+        {
+          "description": "Priority Support Package",
+          "quantity": 1,
+          "unit_price": 1200.0,
+          "total": 1200.0
+        },
+        {
+          "description": "Onboarding Training (2 days)",
+          "quantity": 2,
+          "unit_price": 450.0,
+          "total": 900.0
+        }
+      ],
+      "payment_terms": "Net 30",
+      "bank_iban": "TN59 1234 5678 9012 3456 7890",
+      "status": "pending",
+      "_source": "INV-2026-0089.txt"
+    }
+  ],
   "total_due": 8211.0
 }
 ```
@@ -524,8 +557,13 @@ async def run():
 
     pipeline = DocumentPipeline(
         PipelineConfig(
-            docling=DoclingConfig(images_scale=2.0, accelerator="auto"),
-            vlm=VLMConfig(
+            docling=DoclingConfig(
+                images_scale=1.0,
+                accelerator="cpu",
+                num_threads=4,
+                ocr_enabled=False,   # ← AJOUTE CETTE LIGNE
+            ),
+                        vlm=VLMConfig(
                 model="llava",
                 prompt=(
                     "This is a figure from a scientific paper. State the chart type, "
@@ -561,7 +599,7 @@ DoclingConfig(
     # Resolution of extracted figure images.
     # Higher = better VLM descriptions but more memory and slower.
     # 1.0 = screen resolution, 2.0 = default (recommended), 4.0 = print quality
-    images_scale = 2.0,
+    images_scale = 0.5,
 
     # Enable OCR for scanned PDFs where text is embedded in images (e.g. scanned contracts).
     # Disabled by default because it is slow even on GPU.
@@ -581,12 +619,12 @@ DoclingConfig(
 
 **When to change `accelerator`:**
 
-| Situation | Setting |
-|---|---|
-| You have a GPU and want maximum speed | `"auto"` (default) or `"cuda"` |
-| You want to force CPU to save GPU memory for the VLM | `"cpu"` |
-| You get CUDA out-of-memory errors | `"cpu"` |
-| You are on a Mac with Apple Silicon | `"mps"` |
+| Situation                                            | Setting                        |
+| ---------------------------------------------------- | ------------------------------ |
+| You have a GPU and want maximum speed                | `"auto"` (default) or `"cuda"` |
+| You want to force CPU to save GPU memory for the VLM | `"cpu"`                        |
+| You get CUDA out-of-memory errors                    | `"cpu"`                        |
+| You are on a Mac with Apple Silicon                  | `"mps"`                        |
 
 ---
 
@@ -1034,14 +1072,14 @@ state = await pipeline.run(invoice_files, query="")
 
 ### MIME types reference
 
-| File type | `mime_type` value |
-|---|---|
-| PDF | `application/pdf` |
-| Word (.docx) | `application/vnd.openxmlformats-officedocument.wordprocessingml.document` |
+| File type          | `mime_type` value                                                           |
+| ------------------ | --------------------------------------------------------------------------- |
+| PDF                | `application/pdf`                                                           |
+| Word (.docx)       | `application/vnd.openxmlformats-officedocument.wordprocessingml.document`   |
 | PowerPoint (.pptx) | `application/vnd.openxmlformats-officedocument.presentationml.presentation` |
-| Excel (.xlsx) | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` |
-| HTML | `text/html` |
-| Plain text | `text/plain` |
+| Excel (.xlsx)      | `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`         |
+| HTML               | `text/html`                                                                 |
+| Plain text         | `text/plain`                                                                |
 
 ---
 
@@ -1087,7 +1125,7 @@ state = await pipeline.run(files)
 
 ### Return a markdown report
 
-```python
+````python
 async def markdown_renderer(state, config) -> str:
     lines = [f"# Report — {len(state.documents)} document(s)\n"]
     for doc, ext in zip(state.documents, state.extractions):
@@ -1100,7 +1138,7 @@ async def markdown_renderer(state, config) -> str:
             lines.append(f"- **{fig.placeholder}** (p.{fig.page}): {fig.vlm_description[:150]}…")
         lines += ["", "**Extracted:**", f"```json\n{__import__('json').dumps(ext.data, indent=2)}\n```", ""]
     return "\n".join(lines)
-```
+````
 
 ### Save figures to disk inside the renderer
 
@@ -1287,11 +1325,11 @@ pipeline.replace_stage(VLMStage, MyVLMStage())
 
 ### Supported document formats
 
-| Format | Extension | Notes |
-| --- | --- | --- |
-| PDF | `.pdf` | Full text + figure extraction. Set `ocr_enabled=True` for scanned PDFs. |
-| Word | `.docx` | Text + embedded images |
-| PowerPoint | `.pptx` | Slides as text + slide images |
-| Excel | `.xlsx` | Spreadsheet content |
-| HTML | `.html` | Web pages |
-| Plain text | `.txt` | No figure extraction |
+| Format     | Extension | Notes                                                                   |
+| ---------- | --------- | ----------------------------------------------------------------------- |
+| PDF        | `.pdf`    | Full text + figure extraction. Set `ocr_enabled=True` for scanned PDFs. |
+| Word       | `.docx`   | Text + embedded images                                                  |
+| PowerPoint | `.pptx`   | Slides as text + slide images                                           |
+| Excel      | `.xlsx`   | Spreadsheet content                                                     |
+| HTML       | `.html`   | Web pages                                                               |
+| Plain text | `.txt`    | No figure extraction                                                    |

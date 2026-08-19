@@ -76,7 +76,7 @@ def build_invoice_pipeline(
     vlm_model: str = "llava",
 ) -> DocumentPipeline:
     config = PipelineConfig(
-        docling=DoclingConfig(images_scale=2.0),
+        docling=DoclingConfig(images_scale=1.0,accelerator="cpu",num_threads=4,ocr_enabled=False, ),
         vlm=VLMConfig(model=vlm_model),
         llm=LLMConfig(provider="ollama", model=text_model),
         extraction=ExtractionConfig(

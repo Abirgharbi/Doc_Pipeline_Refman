@@ -18,11 +18,13 @@ Customise
   pipeline.replace_stage(VLMStage, MyVLMStage())
 """
 from __future__ import annotations
+
 import uuid
 from typing import Any
 
 from doc_pipeline.core.state import PipelineState
 from doc_pipeline.core.config import PipelineConfig
+
 from doc_pipeline.stages.base import BaseStage
 from doc_pipeline.stages.ingest import DoclingIngestStage
 from doc_pipeline.stages.vlm import VLMStage

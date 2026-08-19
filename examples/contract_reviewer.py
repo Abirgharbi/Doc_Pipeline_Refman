@@ -91,7 +91,12 @@ async def _contract_renderer(state: PipelineState, config: PipelineConfig) -> st
 
 def build_contract_pipeline(text_model: str = "mistral", vlm_model: str = "llava") -> DocumentPipeline:
     config = PipelineConfig(
-        docling=DoclingConfig(images_scale=2.0),
+        docling=DoclingConfig(
+            images_scale=1.0,
+            accelerator="cpu",
+            num_threads=4,
+            ocr_enabled=False,   # ← AJOUTE CETTE LIGNE
+        ),
         vlm=VLMConfig(model=vlm_model),
         llm=LLMConfig(provider="ollama", model=text_model),
         extraction=ExtractionConfig(
@@ -108,16 +113,10 @@ def build_contract_pipeline(text_model: str = "mistral", vlm_model: str = "llava
 
 if __name__ == "__main__":
     SAMPLE = b"""
-    SOFTWARE LICENSE AGREEMENT  (2026-06-01)
-    Parties: Acme Software Ltd (Vendor) & Startup Inc (Client)
-
-    1. LICENSE: irrevocable, worldwide, non-exclusive.
-    2. PAYMENT: $5,000/month. Late: 2% monthly penalty.
-    3. LIABILITY: capped at fees paid in prior 3 months.
-    4. CONFIDENTIALITY: yes — mutual.
-    5. IP ASSIGNMENT: custom developments → Vendor sole property.
-    6. TERMINATION: 90 days notice; immediate on non-payment. Auto-renewal annual.
-    7. GOVERNING LAW: England & Wales. Arbitration in London.
+    1. This Non-Disclosure Agreement (the "Agreement") is entered into as of
+    2. The parties agree to keep confidential all information disclosed under this Agreement.
+    3. The liability of the Receiving Party shall be limited to the amount of fees paid
+    4. The Agreement shall be governed by and construed in accordance with the laws of England and Wales.
     """
     files = [{
         "name": "software_license.txt",
